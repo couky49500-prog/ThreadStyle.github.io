@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StyleShop — Tee-shirts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b1810;
+    --paper: #f6f3ec;
+    --tag-card: #fffdf8;
+    --signal: #ff4b1f;
+    --olive: #5c6248;
+    --line: #d9d3c2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  .stamp {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 6vw;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.03em;
+  }
+
+  .logo span { color: var(--signal); }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 28px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 8vw 6vw 6vw;
+    max-width: 780px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+
+  .hero p {
+    margin-top: 20px;
+    font-size: 18px;
+    max-width: 480px;
+    color: #4a4636;
+  }
+
+  .hero .cta {
+    display: inline-block;
+    margin-top: 32px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    padding: 14px 32px;
+    text-decoration: none;
+  }
+
+  .hero .cta:hover { background: var(--signal); }
+
+  /* ---------- Products ---------- */
+  .catalogue {
+    padding: 2vw 6vw 8vw;
+  }
+
+  .catalogue-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+  }
+
+  .catalogue-heading h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.02em;
+  }
+
+  .catalogue-heading span {
+    font-size: 15px;
+    color: #6b6650;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+  }
+
+  /* Chaque produit = une étiquette de vêtement, avec trou perforé */
+  .tag {
+    background: var(--tag-card);
+    border: 2px dashed var(--line);
+    position: relative;
+    padding: 22px 22px 26px;
+  }
+
+  .tag::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 14px;
+    height: 14px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+  }
+
+  .swatch {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Icône tee-shirt en SVG simple, couleur variable par produit */
+  .swatch svg { width: 60%; height: 60%; }
+
+  .tag h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .tag .desc {
+    font-size: 14px;
+    color: #5a5644;
+    margin-top: 4px;
+    min-height: 36px;
+  }
+
+  .tag .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .tag .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+  }
+
+  .buy-btn {
+    background: var(--signal);
+    color: #fff;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .buy-btn:hover { background: var(--ink); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 32px 6vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 14px;
+    color: #6b6650;
+  }
+
+  @media (max-width: 560px) {
+    header { padding: 22px 5vw; }
+    nav a { margin-left: 16px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">STYLE<span>SHOP</span></div>
+  <nav>
+    <a href="#catalogue">Boutique</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 class="stamp">Des tee-shirts qu'on ne trouve nulle part ailleurs.</h1>
+  <p>Petite série, impression à la demande, expédiés directement chez vous. Chaque pièce est fabriquée seulement quand vous la commandez.</p>
+  <a href="#catalogue" class="cta">Voir la collection</a>
+</section>
+
+<section class="catalogue" id="catalogue">
+  <div class="catalogue-heading">
+    <h2>La collection</h2>
+    <span>3 modèles disponibles</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- PRODUIT 1 : remplace le nom, la description, le prix, la couleur du SVG et le lien du bouton -->
+    <div class="tag">
+      <div class="swatch">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M30 15 L10 30 L20 42 L30 35 V90 H70 V35 L80 42 L90 30 L70 15 L60 22 H40 Z" fill="#ff4b1f" stroke="#1b1810" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Tee Aurore</h3>
+      <div class="desc">Coton bio, coupe unisexe, orange signal.</div>
+      <div class="price-row">
+        <span class="price">24,90 €</span>
+        <!-- Remplace ce # par ton lien Stripe Payment Link -->
+        <a href="#" class="buy-btn">Acheter</a>
+      </div>
+    </div>
+
+    <!-- PRODUIT 2 -->
+    <div class="tag">
+      <div class="swatch">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M30 15 L10 30 L20 42 L30 35 V90 H70 V35 L80 42 L90 30 L70 15 L60 22 H40 Z" fill="#1b1810" stroke="#1b1810" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Tee Nuit</h3>
+      <div class="desc">Coton bio, coupe unisexe, noir profond.</div>
+      <div class="price-row">
+        <span class="price">24,90 €</span>
+        <a href="#" class="buy-btn">Acheter</a>
+      </div>
+    </div>
+
+    <!-- PRODUIT 3 -->
+    <div class="tag">
+      <div class="swatch">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M30 15 L10 30 L20 42 L30 35 V90 H70 V35 L80 42 L90 30 L70 15 L60 22 H40 Z" fill="#5c6248" stroke="#1b1810" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Tee Argile</h3>
+      <div class="desc">Coton bio, coupe unisexe, vert olive.</div>
+      <div class="price-row">
+        <span class="price">24,90 €</span>
+        <a href="#" class="buy-btn">Acheter</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div>StyleShop — fabriqué à la demande</div>
+  <div>Contact : ton-email@exemple.com</div>
+</footer>
+
+</body>
+</html>
