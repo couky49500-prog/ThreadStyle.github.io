@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tee ThreadStyle — StyleShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b1810;
+    --paper: #f6f3ec;
+    --tag-card: #fffdf8;
+    --signal: #ff4b1f;
+    --olive: #5c6248;
+    --line: #d9d3c2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 6vw;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.03em;
+  }
+
+  .logo span { color: var(--signal); }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .breadcrumb {
+    padding: 20px 6vw 0;
+    font-size: 14px;
+    color: #6b6650;
+  }
+
+  .breadcrumb a { color: #6b6650; }
+
+  /* ---------- Fiche produit ---------- */
+  .product {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    padding: 5vw 6vw 8vw;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 800px) {
+    .product { grid-template-columns: 1fr; }
+  }
+
+  /* Galerie photos */
+  .gallery-main {
+    border: 2px dashed var(--line);
+    background: var(--tag-card);
+    height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-thumbs {
+    display: flex;
+    gap: 12px;
+  }
+
+  .gallery-thumbs img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid var(--line);
+    cursor: pointer;
+  }
+
+  .gallery-thumbs img.active {
+    border-color: var(--ink);
+  }
+
+  /* Infos produit */
+  .info h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.02em;
+  }
+
+  .info .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--signal);
+    margin-top: 8px;
+  }
+
+  .info .desc {
+    margin-top: 18px;
+    font-size: 15px;
+    color: #4a4636;
+    max-width: 420px;
+  }
+
+  .option-block {
+    margin-top: 30px;
+  }
+
+  .option-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+  }
+
+  .selected-value {
+    font-weight: 500;
+    color: var(--signal);
+  }
+
+  /* Couleurs */
+  .swatches {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .swatch-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .swatch-btn.selected {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+  }
+
+  /* Tailles */
+  .sizes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .size-btn {
+    min-width: 46px;
+    padding: 10px 14px;
+    border: 2px solid var(--ink);
+    background: var(--tag-card);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .size-btn.selected {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .size-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: var(--line);
+    color: var(--line);
+  }
+
+  .buy-row {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .buy-btn {
+    background: var(--signal);
+    color: #fff;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    padding: 14px 34px;
+    cursor: pointer;
+  }
+
+  .buy-btn:hover { background: var(--ink); }
+
+  .note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #8a846c;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">STYLE<span>SHOP</span></div>
+  <nav>
+    <a href="index.html">Retour à la boutique</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Boutique</a> / Tee ThreadStyle
+</div>
+
+<section class="product">
+
+  <!-- Galerie photos : remplace les src par tes vrais fichiers uploadés sur GitHub -->
+  <div>
+    <div class="gallery-main">
+      <img id="mainImage" src="tshirt-front.png" alt="Tee ThreadStyle">
+    </div>
+    <div class="gallery-thumbs">
+      <img src="tshirt-front.png" class="active" onclick="changeImage(this, 'tshirt-front.png')" alt="Avant">
+      <img src="tshirt-back.png" onclick="changeImage(this, 'tshirt-back.png')" alt="Arrière">
+    </div>
+  </div>
+
+  <!-- Infos produit -->
+  <div class="info">
+    <h1>Tee ThreadStyle</h1>
+    <div class="price">24,90 €</div>
+    <p class="desc">Coton bio, coupe unisexe, design exclusif imprimé à la demande. Fabriqué uniquement après ta commande.</p>
+
+    <div class="option-block">
+      <h3>Couleur : <span class="selected-value" id="colorLabel">Noir</span></h3>
+      <div class="swatches" id="colorSwatches">
+        <button class="swatch-btn selected" style="background:#141210" onclick="selectColor(this,'Noir')" aria-label="Noir"></button>
+        <button class="swatch-btn" style="background:#f6f3ec" onclick="selectColor(this,'Blanc')" aria-label="Blanc"></button>
+        <button class="swatch-btn" style="background:#5c6248" onclick="selectColor(this,'Olive')" aria-label="Olive"></button>
+        <button class="swatch-btn" style="background:#ff4b1f" onclick="selectColor(this,'Orange')" aria-label="Orange"></button>
+      </div>
+    </div>
+
+    <div class="option-block">
+      <h3>Taille : <span class="selected-value" id="sizeLabel">Choisir une taille</span></h3>
+      <div class="sizes" id="sizeButtons">
+        <button class="size-btn" onclick="selectSize(this,'S')">S</button>
+        <button class="size-btn" onclick="selectSize(this,'M')">M</button>
+        <button class="size-btn" onclick="selectSize(this,'L')">L</button>
+        <button class="size-btn" onclick="selectSize(this,'XL')">XL</button>
+        <button class="size-btn" onclick="selectSize(this,'XXL')">XXL</button>
+      </div>
+    </div>
+
+    <div class="buy-row">
+      <!-- Remplace ce # par ton lien de paiement Stripe une fois prêt -->
+      <a href="#" class="buy-btn" onclick="return checkSize()">Acheter</a>
+    </div>
+    <div class="note">Expédition sous 3 à 7 jours ouvrés, fabriqué à la demande.</div>
+  </div>
+
+</section>
+
+<script>
+  function changeImage(el, src) {
+    document.getElementById('mainImage').src = src;
+    document.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectColor(el, name) {
+    document.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('colorLabel').textContent = name;
+  }
+
+  let chosenSize = null;
+
+  function selectSize(el, size) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('sizeLabel').textContent = size;
+    chosenSize = size;
+  }
+
+  function checkSize() {
+    if (!chosenSize) {
+      alert('Choisis une taille avant d\'acheter.');
+      return false;
+    }
+    return true;
+  }
+</script>
+
+</body>
+</html>
