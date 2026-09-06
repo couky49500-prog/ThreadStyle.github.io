@@ -275,7 +275,7 @@
 
     <div class="buy-row">
       <!-- Remplace ce # par ton lien de paiement Stripe une fois prêt -->
-      <a href="#" class="buy-btn" onclick="return checkSize()">Acheter</a>
+      <a href="javascript:void(0)" class="buy-btn" onclick="handleBuy()">Acheter</a>
     </div>
     <div class="note">Expédition sous 3 à 7 jours ouvrés, fabriqué à la demande.</div>
   </div>
@@ -304,12 +304,12 @@
     chosenSize = size;
   }
 
-  function checkSize() {
+  function handleBuy() {
     if (!chosenSize) {
       alert('Choisis une taille avant d\'acheter.');
-      return false;
+      return;
     }
-    return true;
+    alert('Le paiement arrive bientôt ! En attendant, merci pour ton intérêt 🙌');
   }
 </script>
 
