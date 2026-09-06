@@ -238,11 +238,11 @@
   <!-- Galerie photos : remplace les src par tes vrais fichiers uploadés sur GitHub -->
   <div>
     <div class="gallery-main">
-      <img id="mainImage" src="tshirt-front.png" alt="Tee ThreadStyle">
+      <img id="mainImage" src="photos-tshirt/noir-avant.png" alt="Tee ThreadStyle">
     </div>
     <div class="gallery-thumbs">
-      <img src="tshirt-front.png" class="active" onclick="changeImage(this, 'tshirt-front.png')" alt="Avant">
-      <img src="tshirt-back.png" onclick="changeImage(this, 'tshirt-back.png')" alt="Arrière">
+      <img src="photos-tshirt/noir-avant.png" class="active" onclick="changeView('avant', this)" alt="Avant">
+      <img src="photos-tshirt/noir-arriere.png" onclick="changeView('arriere', this)" alt="Arrière">
     </div>
   </div>
 
@@ -255,10 +255,10 @@
     <div class="option-block">
       <h3>Couleur : <span class="selected-value" id="colorLabel">Noir</span></h3>
       <div class="swatches" id="colorSwatches">
-        <button class="swatch-btn selected" style="background:#141210" onclick="selectColor(this,'Noir')" aria-label="Noir"></button>
-        <button class="swatch-btn" style="background:#f6f3ec" onclick="selectColor(this,'Blanc')" aria-label="Blanc"></button>
-        <button class="swatch-btn" style="background:#5c6248" onclick="selectColor(this,'Olive')" aria-label="Olive"></button>
-        <button class="swatch-btn" style="background:#ff4b1f" onclick="selectColor(this,'Orange')" aria-label="Orange"></button>
+        <button class="swatch-btn selected" style="background:#141210" onclick="selectColor(this,'Noir','noir')" aria-label="Noir"></button>
+        <button class="swatch-btn" style="background:#f6f3ec" onclick="selectColor(this,'Blanc','blanc')" aria-label="Blanc"></button>
+        <button class="swatch-btn" style="background:#5c6248" onclick="selectColor(this,'Olive','olive')" aria-label="Olive"></button>
+        <button class="swatch-btn" style="background:#ff4b1f" onclick="selectColor(this,'Orange','orange')" aria-label="Orange"></button>
       </div>
     </div>
 
@@ -283,19 +283,31 @@
 </section>
 
 <script>
-  function changeImage(el, src) {
-    document.getElementById('mainImage').src = src;
+  let currentColor = 'noir';
+  let currentView = 'avant';
+  let chosenSize = null;
+
+  function updateImage() {
+    document.getElementById('mainImage').src = 'photos-tshirt/' + currentColor + '-' + currentView + '.png';
+  }
+
+  function changeView(view, el) {
+    currentView = view;
+    updateImage();
     document.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
 
-  function selectColor(el, name) {
+  function selectColor(el, name, colorKey) {
+    currentColor = colorKey;
     document.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
     document.getElementById('colorLabel').textContent = name;
+    updateImage();
+    // Remet aussi les vignettes à jour avec la nouvelle couleur
+    document.querySelectorAll('.gallery-thumbs img')[0].src = 'photos-tshirt/' + colorKey + '-avant.png';
+    document.querySelectorAll('.gallery-thumbs img')[1].src = 'photos-tshirt/' + colorKey + '-arriere.png';
   }
-
-  let chosenSize = null;
 
   function selectSize(el, size) {
     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
@@ -312,6 +324,5 @@
     alert('Le paiement arrive bientôt ! En attendant, merci pour ton intérêt 🙌');
   }
 </script>
-
 </body>
 </html>
