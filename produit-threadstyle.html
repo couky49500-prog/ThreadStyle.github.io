@@ -238,11 +238,11 @@
   <!-- Galerie photos : remplace les src par tes vrais fichiers uploadés sur GitHub -->
   <div>
     <div class="gallery-main">
-      <img id="mainImage" src="photos-tshirt/noir-avant.png" alt="Tee ThreadStyle">
+      <img id="mainImage" src="photo-Gildan_5000/noir-avant.png" alt="Tee ThreadStyle">
     </div>
     <div class="gallery-thumbs">
-      <img src="photos-tshirt/noir-avant.png" class="active" onclick="changeView('avant', this)" alt="Avant">
-      <img src="photos-tshirt/noir-arriere.png" onclick="changeView('arriere', this)" alt="Arrière">
+      <img src="photo-Gildan_5000/noir-avant.png" class="active" onclick="changeView('avant', this)" alt="Avant">
+      <img src="photo-Gildan_5000/noir-arriere.png" onclick="changeView('arriere', this)" alt="Arrière">
     </div>
   </div>
 
@@ -288,7 +288,7 @@
   let chosenSize = null;
 
   function updateImage() {
-    document.getElementById('mainImage').src = 'photos-tshirt/' + currentColor + '-' + currentView + '.png';
+    document.getElementById('mainImage').src = 'photo-Gildan_5000/' + currentColor + '-' + currentView + '.png';
   }
 
   function changeView(view, el) {
@@ -305,8 +305,8 @@
     document.getElementById('colorLabel').textContent = name;
     updateImage();
     // Remet aussi les vignettes à jour avec la nouvelle couleur
-    document.querySelectorAll('.gallery-thumbs img')[0].src = 'photos-tshirt/' + colorKey + '-avant.png';
-    document.querySelectorAll('.gallery-thumbs img')[1].src = 'photos-tshirt/' + colorKey + '-arriere.png';
+    document.querySelectorAll('.gallery-thumbs img')[0].src = 'photo-Gildan_5000/' + colorKey + '-avant.png';
+    document.querySelectorAll('.gallery-thumbs img')[1].src = 'photo-Gildan_5000/' + colorKey + '-arriere.png';
   }
 
   function selectSize(el, size) {
