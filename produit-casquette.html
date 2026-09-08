@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casquette ThreadStyle — StyleShop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b1810;
+    --paper: #f6f3ec;
+    --tag-card: #fffdf8;
+    --signal: #ff2d78;
+    --olive: #5c6248;
+    --line: #d9d3c2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 6vw;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.03em;
+  }
+
+  .logo span { color: var(--signal); }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .breadcrumb {
+    padding: 20px 6vw 0;
+    font-size: 14px;
+    color: #6b6650;
+  }
+
+  .breadcrumb a { color: #6b6650; }
+
+  .product {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    padding: 5vw 6vw 8vw;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 800px) {
+    .product { grid-template-columns: 1fr; }
+  }
+
+  .gallery-main {
+    border: 2px dashed var(--line);
+    background: var(--tag-card);
+    height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-thumbs {
+    display: flex;
+    gap: 12px;
+  }
+
+  .gallery-thumbs img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid var(--line);
+    cursor: pointer;
+  }
+
+  .gallery-thumbs img.active {
+    border-color: var(--ink);
+  }
+
+  .info h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.02em;
+  }
+
+  .info .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--signal);
+    margin-top: 8px;
+  }
+
+  .info .desc {
+    margin-top: 18px;
+    font-size: 15px;
+    color: #4a4636;
+    max-width: 420px;
+  }
+
+  .option-block {
+    margin-top: 30px;
+  }
+
+  .option-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+  }
+
+  .selected-value {
+    font-weight: 500;
+    color: var(--signal);
+  }
+
+  .swatches {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .swatch-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .swatch-btn.selected {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+  }
+
+  .buy-row {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .buy-btn {
+    background: var(--signal);
+    color: #fff;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    padding: 14px 34px;
+    cursor: pointer;
+  }
+
+  .buy-btn:hover { background: var(--ink); }
+
+  .note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #8a846c;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">STYLE<span>SHOP</span></div>
+  <nav>
+    <a href="index.html">Retour à la boutique</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Boutique</a> / Casquette ThreadStyle
+</div>
+
+<section class="product">
+
+  <!-- Galerie photos : remplace les src par tes vrais fichiers, dossier photo-casquette -->
+  <div>
+    <div class="gallery-main">
+      <img id="mainImage" src="photo-casquette/marron-avant.png" alt="Casquette ThreadStyle">
+    </div>
+    <div class="gallery-thumbs">
+      <img src="photo-casquette/marron-avant.png" class="active" onclick="changeView('avant', this)" alt="Avant">
+      <img src="photo-casquette/marron-arriere.png" onclick="changeView('arriere', this)" alt="Arrière">
+    </div>
+  </div>
+
+  <div class="info">
+    <h1>Casquette ThreadStyle</h1>
+    <div class="price">19,90 €</div>
+    <p class="desc">Casquette brodée, réglable, design exclusif. Fabriquée uniquement après ta commande.</p>
+
+    <div class="option-block">
+      <h3>Couleur : <span class="selected-value" id="colorLabel">Marron</span></h3>
+      <div class="swatches" id="colorSwatches">
+        <button class="swatch-btn" style="background:#141210" onclick="selectColor(this,'Noir','noir')" aria-label="Noir"></button>
+        <button class="swatch-btn" style="background:#1a2238" onclick="selectColor(this,'Marine','marine')" aria-label="Marine"></button>
+        <button class="swatch-btn" style="background:#7a1128" onclick="selectColor(this,'Bordeaux','bordeaux')" aria-label="Bordeaux"></button>
+        <button class="swatch-btn" style="background:#1f3d2b" onclick="selectColor(this,'Vert fonce','vert-fonce')" aria-label="Vert foncé"></button>
+        <button class="swatch-btn" style="background:#3a3a3a" onclick="selectColor(this,'Gris','gris')" aria-label="Gris"></button>
+        <button class="swatch-btn selected" style="background:#b08968" onclick="selectColor(this,'Marron','marron')" aria-label="Marron"></button>
+        <button class="swatch-btn" style="background:#dfc2a8" onclick="selectColor(this,'Beige','beige')" aria-label="Beige"></button>
+        <button class="swatch-btn" style="background:#f6b8c4" onclick="selectColor(this,'Rose','rose')" aria-label="Rose"></button>
+        <button class="swatch-btn" style="background:#b8d4e3" onclick="selectColor(this,'Bleu clair','bleu-clair')" aria-label="Bleu clair"></button>
+        <button class="swatch-btn" style="background:#ffffff" onclick="selectColor(this,'Blanc','blanc')" aria-label="Blanc"></button>
+      </div>
+    </div>
+
+    <div class="buy-row">
+      <!-- Remplace ce # par ton lien de paiement Stripe une fois prêt -->
+      <a href="javascript:void(0)" class="buy-btn" onclick="handleBuy()">Acheter</a>
+    </div>
+    <div class="note">Expédition sous 3 à 7 jours ouvrés, fabriquée à la demande.</div>
+  </div>
+
+</section>
+
+<script>
+  let currentColor = 'marron';
+  let currentView = 'avant';
+
+  function updateImage() {
+    document.getElementById('mainImage').src = 'photo-casquette/' + currentColor + '-' + currentView + '.png';
+  }
+
+  function changeView(view, el) {
+    currentView = view;
+    updateImage();
+    document.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectColor(el, name, colorKey) {
+    currentColor = colorKey;
+    document.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('colorLabel').textContent = name;
+    updateImage();
+    document.querySelectorAll('.gallery-thumbs img')[0].src = 'photo-casquette/' + colorKey + '-avant.png';
+    document.querySelectorAll('.gallery-thumbs img')[1].src = 'photo-casquette/' + colorKey + '-arriere.png';
+  }
+
+  function handleBuy() {
+    alert('Le paiement arrive bientôt ! En attendant, merci pour ton intérêt 🙌');
+  }
+</script>
+
+</body>
+</html>
